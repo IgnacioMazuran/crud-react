@@ -1,10 +1,10 @@
 import './App.css';
+import ListadoNombres from './components/ListadoNombres';
 
 function App() {
   return (
-    <div className="App">
-      <h1>React</h1>
-    
+    <div className="container">
+    <ListadoNombres/>
     </div>
   );
 }
