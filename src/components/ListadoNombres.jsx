@@ -5,20 +5,47 @@ function ListadoNombres(props) {
 
     const [nombre, setNombre] = useState('');
     const [listanombres, setListaNombres] = useState([]);
+    const [edicion, setEdicion] = useState(false);
+    const [id, setId] = useState('');
+    const [error, setError] = useState(null);
 
     const agregarNombres = (e) => {
         e.preventDefault();
+        if (!nombre.trim()) {
+            setError('El campo nombre está vacío');
+            return
+        }
         const nuevoNombre = {
             id: uniqid(),
             tituloNombre: nombre
         }
         setListaNombres([...listanombres, nuevoNombre]);
         setNombre('');
+        setError(null);
+    }
+
+    const borrarNombre = (id) => {
+        const arreglo = listanombres.filter( item => item.id !== id);
+        setListaNombres(arreglo);
+    }
+
+    const editar = (item) => {
+        setEdicion(true);
+        setNombre(item.nombre);
+        setId(item.id);
+    }
+
+    const editarNombre = (e) => {
+        e.preventDefault();
+        const nuevoArray = listanombres.map(item => item.id === id ? {id:id, tituloNombre:nombre} : item);
+        setListaNombres(nuevoArray);
+        setNombre('');
+        setEdicion(false);
     }
 
     return (
         <div>
-            <h2 class="d-flex justify-content-center">App</h2>
+            <h2 class="d-flex justify-content-center">Apprendiendo Hooks :)</h2>
             <div className='row'>
                 <div className='col'>
                     <h2>Nombres</h2>
@@ -26,7 +53,12 @@ function ListadoNombres(props) {
 
                         {
                             listanombres.map(item =>
-                                <li key="{item.id}" className='list-group-item'>{item.tituloNombre}</li>
+                                <li key="{item.id}" className='list-group-item'>{item.tituloNombre}
+                                <button className="btn btn-danger float-end m-1" 
+                                onClick={() => {borrarNombre(item.id)}}>Borrar</button>
+                                <button className='btn btn-info float-end m-1'
+                                onClick={() => {editar(item)}} >Editar</button>
+                                </li>
                             )
 
                         }
@@ -35,10 +67,17 @@ function ListadoNombres(props) {
                 </div>
                 <div className='col'>
                     <h2>Añadir nombres</h2>
-                    <form onSubmit={(e) => agregarNombres(e)} className='form-group'>
+                    <form onSubmit={edicion ? editarNombre : agregarNombres} className='form-group'>
                         <input onChange={(e) => { setNombre(e.target.value) }} className='form-control mb-3' type='text' placeholder='Ingresar Nombre' value={nombre}/>
-                        <input class="btn btn-success" type="submit" placeholder='Registrar Nombre' />
+                        <input class="btn btn-success" type="submit" placeholder='Registrar Nombre' value={edicion ? 'Editar Nombre': 'Registrar Nombre'}></input> 
                     </form>
+                    {
+                        error != null ? (
+                           <div className="alert alert-danger ms-0 mt-3 p-2">{error}</div>
+                        ):(
+                            <div></div>
+                        )
+                    }
                 </div>
 
             </div>
