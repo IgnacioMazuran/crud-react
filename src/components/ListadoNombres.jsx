@@ -45,7 +45,7 @@ function ListadoNombres(props) {
 
     return (
         <div>
-            <h2 class="d-flex justify-content-center">Apprendiendo Hooks :)</h2>
+            <h2 className="d-flex justify-content-center">Apprendiendo Hooks :)</h2>
             <div className='row'>
                 <div className='col'>
                     <h2>Nombres</h2>

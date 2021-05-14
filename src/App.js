@@ -7,16 +7,21 @@ import {
   Route,
   Link
 } from 'react-router-dom';
-import Usuario from './components/Usuario';
+import Inicio from './components/registro/Inicio';
+import Admin from './components/registro/Admin';
+import Login from './components/registro/Login';
+import Menu from './components/registro/Menu';
 
 function App() {
   return (
     <div className="container">
 
       <Router>
+      <Menu/>
         <Switch>
           <Route exact path='/'>
             <div>
+              
               <Link to='/ejemplo'>A ejemplo</Link>
               <ListadoNombres />
             </div>
@@ -29,9 +34,17 @@ function App() {
               </h3>
             </div>
           </Route>
-          <Route path='/usuario/:id'>
-            <Usuario />
+          <Route path='/admin'>
+            <Admin />
           </Route>
+          <Route path='/inicio'>
+            <Inicio />
+          </Route>
+          <Route path='/login'>
+            <Login />
+          </Route>
+          
+          
         </Switch>
       </Router>
     </div>
