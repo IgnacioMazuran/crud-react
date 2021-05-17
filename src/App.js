@@ -11,6 +11,7 @@ import Inicio from './components/registro/Inicio';
 import Admin from './components/registro/Admin';
 import Login from './components/registro/Login';
 import Menu from './components/registro/Menu';
+import Formulario from './components/Formulario';
 
 function App() {
   return (
@@ -26,14 +27,15 @@ function App() {
               <ListadoNombres />
             </div>
           </Route>
-          <Route path='/ejemplo'>
+          <Route path='/inicio'>
             <div>
               <h3>
                 <Ejemplo />
-                <Link to='/'>A inicio</Link>
+                <Link to='/inicio'>A inicio</Link>
               </h3>
             </div>
           </Route>
+          
           <Route path='/admin'>
             <Admin />
           </Route>
@@ -42,6 +44,8 @@ function App() {
           </Route>
           <Route path='/login'>
             <Login />
+          </Route> <Route path='/formulario'>
+            <Formulario />
           </Route>
           
           

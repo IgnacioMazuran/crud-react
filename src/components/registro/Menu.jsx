@@ -30,6 +30,9 @@ const Menu = () => {
                     <li className='nav-item'>
                         <Link className='nav-link' to='/'>Inicio</Link>
                     </li>
+                    <li className='nav-item'>
+                        <Link className='nav-link' to='/formulario'>Formulario</Link>
+                    </li>
                     <li className='nav-item'>{
                         !usuario ? (
                             <Link className='nav-link' to='/admin'>Admin</Link>

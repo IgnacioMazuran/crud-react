@@ -68,8 +68,15 @@ function ListadoNombres(props) {
                 <div className='col'>
                     <h2>Añadir nombres</h2>
                     <form onSubmit={edicion ? editarNombre : agregarNombres} className='form-group'>
-                        <input onChange={(e) => { setNombre(e.target.value) }} className='form-control mb-3' type='text' placeholder='Ingresar Nombre' value={nombre}/>
-                        <input class="btn btn-success" type="submit" placeholder='Registrar Nombre' value={edicion ? 'Editar Nombre': 'Registrar Nombre'}></input> 
+                    <input value={nombre} onChange={(e)=> {setNombre(e.target.value)}} className='form-control mb-3' type='text' placeholder='Ingresar Nombre' />
+                        {
+                            edicion ? (
+                                <button className="btn btn-primary" type="button" onClick={editarNombre}>Editar</button>
+                            ) : (
+                                <button className="btn btn-primary" type="button" onClick={agregarNombres}>Registrar</button>
+                            )
+                        }
+                   
                     </form>
                     {
                         error != null ? (
